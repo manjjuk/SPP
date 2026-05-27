@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campbell Shillinglaw Lau Ltd Speech Privacy Calculation Framework  Enclosed Office</title>
+    <style>
+        :root {
+            --primary: #111111;
+            --accent: #005A9C;
+            --bg: #ffffff;
+            --panel-bg: #f5f5f5;
+            --border: #cccccc;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fafafa;
+            color: var(--primary);
+            line-height: 1.5;
+            margin: 0;
+            padding: 30px 20px;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--bg);
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            border: 1px solid #e5e5e5;
+        }
+        h1 {
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 0 5px 0;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        h2 {
+            font-size: 15px;
+            text-transform: uppercase;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--primary);
+            padding-bottom: 5px;
+            letter-spacing: 0.3px;
+        }
+        .sub-tag {
+            font-size: 12px;
+            color: #666666;
+            margin-bottom: 25px;
+            display: block;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+        input, select {
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 13.5px;
+            background-color: #ffffff;
+            font-family: inherit;
+        }
+        input:focus, select:focus {
+            outline: 2px solid var(--accent);
+        }
+        .result-panel {
+            background-color: #f0f7ff;
+            border-left: 6px solid var(--accent);
+            padding: 25px;
+            margin: 35px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .result-panel h3 {
+            margin: 0 0 8px 0;
+            color: var(--accent);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .stc-output {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+        .unit-label {
+            font-size: 18px;
+            font-weight: 400;
+            color: #444444;
+        }
+        .formula-box {
+            margin-top: 15px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 12px;
+            background-color: #e6f0fa;
+            padding: 10px 14px;
+            border-radius: 4px;
+            border: 1px dashed #b3d1ff;
+            color: #222222;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 12.5px;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--panel-bg);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 11px;
+            color: #333333;
+        }
+        tr:nth-child(even) td {
+            background-color: #fafafa;
+        }
+        .note {
+            font-size: 11.5px;
+            color: #555555;
+            margin-top: 4px;
+            font-style: italic;
+        }
+        .dynamic-spp-summary {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #f9f2f4;
+            border-left: 4px solid #a94442;
+            font-weight: 600;
+            font-size: 13px;
+            color: #333333;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Campbell Shillinglaw Lau Ltd <br> <i>Speech Privacy Solver - Enclosed Office</i><br><spanspan class="sub-tag">Version 1 (May 2026)</spanspan></h1>
+    
+    <span class="sub-tag">References: Salter, CM and Powell, K and Begault, D and Alvarado, R (2003) Case Studies of a Method for Predicting Speech Privacy in the Contemporary Workplace</span>
+
+    <h2>1. Acoustic Constraints & Reference Targets</h2>
+    <div class="grid">
+        <div class="form-group">
+            <label for="vocalEffort">Voice Source Level (L<sub>speech</sub>)</label>
+            <select id="vocalEffort" onchange="runCSLLSolver()">
+                <option value="54">Low (Telephone conversation using a low voice level) [54 dBA]</option>
+                <option value="60" selected>Conversational (Casual conversation in an office setting) [60 dBA]</option>
+                <option value="66">Raised (Conversation of three or more people in a meeting) [66 dBA]</option>
+                <option value="72">Loud (Talking into a speakerphone / presentation) [72 dBA]</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="privacyLevel">Speech Privacy Criteria (C<sub>privacy</sub>)</label>
+            <select id="privacyLevel" onchange="runCSLLSolver()">
+                <option value="15" selected>Confidential (Audible but not intelligible) [15 dB]</option>
+                <option value="9">Normal (Audible and partially intelligible) [9 dB]</option>
+                <option value="3">Marginal (Speech from adjacent spaces is largely understandable) [3 dB]</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="form-group">
+            <label for="backgroundNoise">Continuous Background Noise Level (L<sub>BG</sub>)</label>
+            <input type="number" id="backgroundNoise" value="35" min="15" max="65" oninput="runCSLLSolver()">
+            <span class="note">Enter ambient design condition value in dBA</span>
+        </div>
+        <div class="form-group">
+            </div>
+    </div>
+
+    <h2>2. Boundary Room Profiles (Metric Inputs)</h2>
+    <div class="grid">
+        <div class="form-group">
+            <label for="sourceArea">Source Room Floor Area (m<sup>2</sup>)</label>
+            <input type="number" id="sourceArea" value="15.0" step="0.1" min="1" oninput="runCSLLSolver()">
+        </div>
+        <div class="form-group">
+            <label for="sourceAbsorption">Source Room Material Finishes</label>
+            <select id="sourceAbsorption" onchange="runCSLLSolver()">
+                <option value="50" selected>Absorptive Surfaces (&gt;50% coverage: carpet, acoustic ceiling tiles)</option>
+                <option value="20">Hard Surfaces (&lt;20% coverage: drywall, concrete slab)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="form-group">
+            <label for="receiveArea">Receive Room Floor Area (m<sup>2</sup>)</label>
+            <input type="number" id="receiveArea" value="18.0" step="0.1" min="1" oninput="runCSLLSolver()">
+        </div>
+        <div class="form-group">
+            <label for="receiverAbsorption">Receive Room Material Finishes</label>
+            <select id="receiverAbsorption" onchange="runCSLLSolver()">
+                <option value="50" selected>Absorptive Surfaces (&gt;50% coverage: soft furnishings, carpet)</option>
+                <option value="20">Hard Surfaces (&lt;20% coverage: glass facades, hard tiles)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="form-group">
+            <label for="partitionWidth">Shared Partition Wall Width (m)</label>
+            <input type="number" id="partitionWidth" value="4.0" step="0.1" min="0.5" oninput="runCSLLSolver()">
+        </div>
+        <div class="form-group">
+            <label for="partitionHeight">Shared Partition Wall Height (m)</label>
+            <input type="number" id="partitionHeight" value="2.7" step="0.1" min="0.5" oninput="runCSLLSolver()">
+        </div>
+    </div>
+
+    <h2>3. Minimum Structural Requirement</h2>
+    <div class="result-panel">
+        <h3>Required Partition Sound Isolation Target</h3>
+        <div class="stc-output" id="stcResult">-- <span class="unit-label">STC / NIC (Minimum)</span></div>
+        <div class="formula-box" id="formulaCallout">--</div>
+        <br>
+        <span class="sub-tag">Assume Excess = 0 for optimised Privacy Level without dissatisfaction</span>      
+        <span class="sub-tag">Input pairs: Either STC/dBA or NIC/NC </span>      
+    </div>
+
+        <h2>Appendix: Speech Privacy Potential (SPP) Reference Matrix</h2>
+    
+    <table id="sppReferenceTable">
+        <thead>
+            <tr>
+                <th>Vocal Effort Classification</th>
+                <th>Source Amplitude Baseline</th>
+                <th>Required Equivalent SPP (Confidential)</th>
+                <th>Required Equivalent SPP (Normal)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Low Voice</strong></td><td>54 dBA</td><td><strong>70</strong></td><td><strong>65</strong></td></tr>
+            <tr><td><strong>Conversational Voice</strong></td><td>60 dBA</td><td><strong>75</strong></td><td><strong>70</strong></td></tr>
+            <tr><td><strong>Raised Voice</strong></td><td>66 dBA</td><td><strong>80</strong></td><td><strong>75</strong></td></tr>
+            <tr><td><strong>Loud Voice</strong></td><td>72 dBA</td><td><strong>85</strong></td><td><strong>80</strong></td></tr>
+        </tbody>
+    </table>
+    <div id="dynamicSppSummary" class="dynamic-spp-summary"></div>
+</div>
+
+    
+    
+    <h2>Appendix: Reference Metric Mapping Matrices</h2>
+    
+    
+        <div>
+            <h3 style="font-size:12px; text-transform:uppercase; color:#333;">Source Room Correction Table (ΔL<sub>source room</sub>)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric Floor Area (m<sup>2</sup>)</th>
+                        <th>Absorptive (&gt;50%)</th>
+                        <th>Hard (&lt;20%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Area &gt; 93.03</td><td>-3 dB</td><td>+3 dB</td></tr>
+                    <tr><td>46.52 &lt; Area ≤ 93.03</td><td>0 dB</td><td>+6 dB</td></tr>
+                    <tr><td>23.26 &lt; Area ≤ 46.52</td><td>+3 dB</td><td>+9 dB</td></tr>
+                    <tr><td>11.63 &lt; Area ≤ 23.26</td><td>+6 dB</td><td>+12 dB</td></tr>
+                    <tr><td>5.58 &lt; Area ≤ 11.63</td><td>+9 dB</td><td>+15 dB</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h3 style="font-size:12px; text-transform:uppercase; color:#333;">Receiver Room Correction Table (ΔL<sub>receiver room</sub>)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Area / Wall Ratio</th>
+                        <th>Absorptive (&gt;50%)</th>
+                        <th>Hard (&lt;20%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Ratio e 10.0</td><td>+10 dB</td><td>+5 dB</td></tr>
+                    <tr><td>6.0 ≤ Ratio &lt; 10.0</td><td>+8 dB</td><td>+3 dB</td></tr>
+                    <tr><td>5.0 ≤ Ratio &lt; 6.0</td><td>+7 dB</td><td>+2 dB</td></tr>
+                    <tr><td>4.0 ≤ Ratio &lt; 5.0</td><td>+6 dB</td><td>+1 dB</td></tr>
+                    <tr><td>3.0 ≤ Ratio &lt; 4.0</td><td>+5 dB</td><td>0 dB</td></tr>
+                    <tr><td>2.0 ≤ Ratio &lt; 3.0</td><td>+3 dB</td><td>-2 dB</td></tr>
+                    <tr><td>1.5 ≤ Ratio &lt; 2.0</td><td>+2 dB</td><td>-3 dB</td></tr>
+                    <tr><td>1.0 ≤ Ratio &lt; 1.5</td><td>0 dB</td><td>-5 dB</td></tr>
+                    <tr><td>Ratio &lt; 1.0</td><td>0 dB</td><td>-5 dB</td></tr>
+                </tbody>
+            </table>
+        </div>
+    
+
+
+<script>
+    function getDeltaSource(areaM2, absorptionType) {
+        if (areaM2 > 93.03) {
+            return (absorptionType === "50") ? -3 : 3;
+        } else if (areaM2 > 46.52) {
+            return (absorptionType === "50") ? 0 : 6;
+        } else if (areaM2 > 23.26) {
+            return (absorptionType === "50") ? 3 : 9;
+        } else if (areaM2 > 11.63) {
+            return (absorptionType === "50") ? 6 : 12;
+        } else if (areaM2 >= 5.58 || areaM2 < 5.58) {
+            return (absorptionType === "50") ? 9 : 15;
+        }
+    }
+
+    function getDeltaReceiver(receiveArea, partitionArea, receiverAbsorptionType) {
+        if (partitionArea <= 0) return 0;
+        const ratio = receiveArea / partitionArea;
+
+        if (ratio >= 10.0) {
+            return (receiverAbsorptionType === "50") ? 10 : 5;
+        } else if (ratio >= 6.0) {
+            return (receiverAbsorptionType === "50") ? 8 : 3;
+        } else if (ratio >= 5.0) {
+            return (receiverAbsorptionType === "50") ? 7 : 2;
+        } else if (ratio >= 4.0) {
+            return (receiverAbsorptionType === "50") ? 6 : 1;
+        } else if (ratio >= 3.0) {
+            return (receiverAbsorptionType === "50") ? 5 : 0;
+        } else if (ratio >= 2.0) {
+            return (receiverAbsorptionType === "50") ? 3 : -2;
+        } else if (ratio >= 1.5) {
+            return (receiverAbsorptionType === "50") ? 2 : -3;
+        } else if (ratio >= 1.0) {
+            return (receiverAbsorptionType === "50") ? 0 : -5;
+        } else {
+            return (receiverAbsorptionType === "50") ? 0 : -5;
+        }
+    }
+
+    function runCSLLSolver() {
+        const vocalSelect = document.getElementById('vocalEffort');
+        const L_speech = parseFloat(vocalSelect.value);
+        
+        // Split text to separate the pure name string from the original select brackets
+        const voiceTextOnly = vocalSelect.options[vocalSelect.selectedIndex].text.split(' [')[0]; 
+        // Concat to force the clean 'Voice Mode [XX dBA]' formatting constraint
+        const voiceTextWithDb = `${voiceTextOnly} [${L_speech} dBA]`;
+        
+        const C_privacy = parseFloat(document.getElementById('privacyLevel').value);
+        const L_BG = parseFloat(document.getElementById('backgroundNoise').value);
+        
+        const sourceArea = parseFloat(document.getElementById('sourceArea').value) || 0;
+        const receiveArea = parseFloat(document.getElementById('receiveArea').value) || 0;
+        const pWidth = parseFloat(document.getElementById('partitionWidth').value) || 0;
+        const pHeight = parseFloat(document.getElementById('partitionHeight').value) || 0;
+        
+        const sourceAbs = document.getElementById('sourceAbsorption').value;
+        const recAbs = document.getElementById('receiverAbsorption').value;
+
+        const partitionArea = pWidth * pHeight;
+
+        const deltaSource = getDeltaSource(areaM2 = sourceArea, absorptionType = sourceAbs);
+        const deltaReceiver = getDeltaReceiver(receiveArea, partitionArea, recAbs);
+
+        let exactSTC = L_speech + C_privacy + deltaSource - deltaReceiver - L_BG;
+        let finalSTC = Math.ceil(exactSTC);
+
+        if (finalSTC < 15) finalSTC = 15;
+
+        document.getElementById('stcResult').innerHTML = finalSTC + ' <span class="unit-label">STC (Minimum Target)</span>';
+        document.getElementById('formulaCallout').innerText = 
+            `Equation: STC = ${L_speech} (Voice) + ${C_privacy} (Criteria) + [${deltaSource >= 0 ? '+' : ''}${deltaSource} (Δ Src)] - [${deltaReceiver >= 0 ? '+' : ''}${deltaReceiver} (Δ Rec)] - ${L_BG} (Noise) - [0(Excess)]= ${exactSTC.toFixed(1)} ➔ Rounded to ${finalSTC}`;
+
+        const calculatedSPP = finalSTC + L_BG;
+        
+        // Executing rendering layout script mapping string text template
+        document.getElementById('dynamicSppSummary').innerText = 
+            `The current SPP ${calculatedSPP}.
+            For STC ${finalSTC} wall + background ${L_BG} dBA, under ${voiceTextWithDb}.`;
+    }
+
+    window.onload = function() {
+        runCSLLSolver();
+    };
+</script>
+
+</body>
+</html>
