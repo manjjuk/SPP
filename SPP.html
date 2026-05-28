@@ -155,7 +155,7 @@
 <body>
 
 <div class="container">
-    <h1>Campbell Shillinglaw Lau Ltd <br> <i>Speech Privacy Solver - Enclosed Office</i><br><spanspan class="sub-tag">Version 1 (May 2026)</spanspan></h1>
+    <h1>Campbell Shillinglaw Lau Ltd <br> <i>Speech Privacy Solver - Enclosed Office</i><br><spanspan class="sub-tag">Version 1.01 (May 2026)</spanspan></h1>
     
     <span class="sub-tag">References: Salter, CM and Powell, K and Begault, D and Alvarado, R (2003) Case Studies of a Method for Predicting Speech Privacy in the Contemporary Workplace</span>
 
@@ -170,6 +170,9 @@
                 <option value="72">Loud (Talking into a speakerphone / presentation) [72 dBA]</option>
             </select>
         </div>
+   	</div>     
+
+    <div class="grid">        
         <div class="form-group">
             <label for="privacyLevel">Speech Privacy Criteria (C<sub>privacy</sub>)</label>
             <select id="privacyLevel" onchange="runCSLLSolver()">
@@ -190,12 +193,16 @@
             </div>
     </div>
 
-    <h2>2. Boundary Room Profiles (Metric Inputs)</h2>
+    <h2>2a. Source Room - Boundary Profiles (Metric Inputs)</h2>
     <div class="grid">
         <div class="form-group">
             <label for="sourceArea">Source Room Floor Area (m<sup>2</sup>)</label>
             <input type="number" id="sourceArea" value="15.0" step="0.1" min="1" oninput="runCSLLSolver()">
         </div>
+   	</div>     
+        
+        
+  	<div class="grid">      
         <div class="form-group">
             <label for="sourceAbsorption">Source Room Material Finishes</label>
             <select id="sourceAbsorption" onchange="runCSLLSolver()">
@@ -205,11 +212,15 @@
         </div>
     </div>
 
+    <h2>2b. Receiving Room - Boundary Profiles (Metric Inputs)</h2>
     <div class="grid">
         <div class="form-group">
             <label for="receiveArea">Receive Room Floor Area (m<sup>2</sup>)</label>
             <input type="number" id="receiveArea" value="18.0" step="0.1" min="1" oninput="runCSLLSolver()">
         </div>
+	</div>
+
+    <div class="grid">
         <div class="form-group">
             <label for="receiverAbsorption">Receive Room Material Finishes</label>
             <select id="receiverAbsorption" onchange="runCSLLSolver()">
@@ -224,11 +235,17 @@
             <label for="partitionWidth">Shared Partition Wall Width (m)</label>
             <input type="number" id="partitionWidth" value="4.0" step="0.1" min="0.5" oninput="runCSLLSolver()">
         </div>
+	</div>
+
+    <div class="grid">
         <div class="form-group">
             <label for="partitionHeight">Shared Partition Wall Height (m)</label>
             <input type="number" id="partitionHeight" value="2.7" step="0.1" min="0.5" oninput="runCSLLSolver()">
         </div>
     </div>
+
+
+
 
     <h2>3. Minimum Structural Requirement</h2>
     <div class="result-panel">
